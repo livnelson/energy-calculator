@@ -1,0 +1,314 @@
+/* Styles for the customer form container */
+.customer-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f1f3f4;
+  width: 580px;
+  max-width: 580px;
+  height: 100vh;
+  padding: 40px 30px 60px 0px;
+}
+
+/* Styles for text input fields in the form */
+.customer-form-input {
+  border: 0px solid #f1f3f4;
+  border-radius: 7px;
+  padding: 10px 20px;
+  margin: 10px 0px;
+  width: 100%;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for labels in the form */
+.customer-form-label {
+  margin: 10px 0px;
+  padding: 0px 10px;
+}
+
+/* Styles for text input labels */
+.customer-form-input-text {
+  margin: 10px 0px;
+  font-size: 14px;
+}
+
+
+
+
+
+
+/* Styles for the bill input section */
+.customer-form-bill-input {
+  display: flex;
+  flex-direction: row;
+  margin-top: 6px;
+}
+
+/* Styles for custom input fields */
+.customer-form-custom-input {
+  background: #ffffff;
+  padding: 7px 16px;
+  border: 0px solid #f1f3f4;
+  border-radius: 7px;
+  margin-bottom: 10px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for small input fields */
+.customer-form-small-input {
+  border: 0px solid #f1f3f4;
+  border-radius: 7px;
+  width: 50px;
+  margin-left: 20px;
+}
+
+/* Styles for the bill slider section */
+.customer-form-slider {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0px 0px;
+  width: 100%;
+}
+
+
+
+
+
+
+/* Styles for the input slider */
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  min-width: 140px;
+  max-width: 140px;
+  height: 40px;
+  background-color: transparent;
+  border-radius: 5px;
+  outline: none;
+  transition: background-color 0.3s ease;
+  -moz-appearance: none;
+  overflow: hidden;
+}
+
+/* Styles for the slider track (filled color) */
+.slider::-webkit-slider-runnable-track {
+  background: #fff;
+  border-radius: 10px;
+  height: 15px;
+  margin-right: 6px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for the slider thumb (draggable handle) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  background-color: #0071bc;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  transition: background-color 0.3s ease;
+  top: calc(50% - 11px);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for the slider thumb on hover */
+.slider:hover::-webkit-slider-thumb {
+  background-color: #004f8c;
+}
+
+/* Firefox specific styles for the slider */
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background-color: #0071bc;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.slider::-moz-range-track {
+  background-color: #ccc;
+  border-radius: 5px;
+}
+
+
+
+
+
+
+/* Styles for radio buttons */
+.customer-form-radio-btn-container{
+  display: flex;
+  flex-direction: row;
+}
+
+.customer-form-radio {
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+  top: 14px;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  background-color: #fff;
+  transition: border-color 0.3s ease;
+  margin-right: 5px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+/* Styles for radio buttons when checked */
+.customer-form-radio:checked::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #0071bc;
+}
+
+/* Styles for small buttons */
+.customer-form-small-button {
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  border: 0px solid transparent;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+  margin: 10px 6px 22px 6px;
+  padding: 3px 8px;
+}
+
+
+
+
+
+/* Styles for the appliance table */
+.appliance-table-container {
+  width: 100%;
+  overflow-x: auto;
+  background-color: #fff;
+  padding-left: 20px;
+  border-radius: 7px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.appliance-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px; /* Add any desired margin */
+}
+
+.appliance-table th,
+.appliance-table td {
+  padding: 8px 12px;
+  text-align: left;
+  /* border-bottom: 1px solid #ccc; */
+}
+
+.appliance-table th {
+  background-color: #fff;
+  padding-top: 30px;
+  font-size: 14px;
+  text-align: left;
+}
+
+/* Center the contents of columns 2 and 3 */
+.appliance-table td:nth-child(2),
+.appliance-table td:nth-child(3) {
+  text-align: center;
+  align-items: center;
+}
+
+/* Center the contents of columns 2 and 3 */
+.appliance-table th:nth-child(2),
+.appliance-table th:nth-child(3) {
+  text-align: center;
+  align-items: center;
+}
+
+
+
+
+
+/* ToggleSwitch.css */
+.toggle-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toggle-switch {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 24px;
+}
+
+.toggle-switch input[type="checkbox"] {
+  display: none;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 26px;
+  transition: background-color 0.3s;
+}
+
+.toggle-slider:before {
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+.toggle-switch input:checked + .toggle-slider {
+  background-color: #0071bc;
+}
+
+.toggle-switch input:checked + .toggle-slider:before {
+  transform: translateX(24px);
+}
+
+
+
+
+
+/* Styles for the submit button */
+.customer-form-submit-btn {
+  margin: 20px 10px;
+  background: #0071bc;
+  border: 0px solid transparent;
+  border-radius: 5px;
+  color: #fff;
+  padding: 10px 30px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+/* Styles for the submit button on hover */
+.customer-form-submit-btn:hover {
+  background: #004f8c;
+}
