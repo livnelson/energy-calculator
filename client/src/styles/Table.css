@@ -15,6 +15,7 @@
 
 /* Large Table Styles */
 .large-table-container {
+  flex-direction: column;
   background-color: #fff;
   padding: 30px;
   border-radius: 5px 5px 0 0;
@@ -22,11 +23,15 @@
   margin-bottom: 0px;
   margin-top: 10px;
   overflow-y: auto; /* Add vertical scrolling when the content overflows */
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
+  max-width: 900px;
 }
 
 .large-table {
   width: 100%;
-  max-width: 900px;
+  text-align: center;
 }
 
 /* Large Own and Not Own Buttons */
@@ -57,7 +62,7 @@
 
 .close-btn-container {
   position: relative;
-  width: 82%;
+  width: 90vw;
   max-width: 900px;
   justify-content: center;
   align-items: end;

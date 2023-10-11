@@ -16,53 +16,6 @@ function Form() {
 
   const navigate = useNavigate();
 
-    // Function to calculate the total power usage
-  const checkPower = (sums) => {
-    if (sums.power <= 11499.99) {
-      return (
-        <>
-          <img
-            className='power-summary-image'
-            src='https://res.cloudinary.com/domjidfzz/image/upload/v1696630025/TruPower/TruPower-PowerPack-Side_hqwple.png'
-            alt='trupower-powerpack'
-            style={{ width: '200px' }}
-          />
-          <p>
-            1 TruPower PowerSwitch + 1 PowerPack
-          </p>
-        </>
-      )
-    } else if (sums.power >= 11500.00 && sums.power <= 14999.99) {
-      return (
-        <>
-          <img
-            className='power-summary-image'
-            src=''
-            alt='trupower-powerpack'
-          />
-          <p>
-            1 TruPower PowerSwitch + 2 PowerPacks
-          </p>
-        </>
-      )
-    }
-    else if (sums.power >= 15000.00) {
-      return (
-        <>
-          <img
-            className='power-summary-image'
-            src=''
-            alt='trupower-powerpack'
-          />
-          <p>
-            2 TruPower PowerSwitches + 4 PowerPacks
-          </p>
-        </>
-      )
-    }
-  }
-
-
   const handleSliderChange = (e) => {
     const newValue = e.target.value;
     setSliderValue(newValue);
@@ -160,7 +113,7 @@ function Form() {
 
         <div className='customer-form-slider'>
           {/* Label for estimated energy consumption input */}
-          <label className='customer-form-label'>Estimated Energy Consumption</label>
+          <label className='customer-form-label'>Average Energy Consumption</label>
           <input
             className='slider'
             name='estimatedEnergyConsumption'
@@ -174,7 +127,7 @@ function Form() {
             aria-valuemax='150'
             aria-valuenow={sliderValue}
           />
-          <span>{sliderValue} kWh/Day</span>
+          <span>{sliderValue} kWh / month</span>
         </div>
 
         <div className='customer-form-radio-btn-container'>

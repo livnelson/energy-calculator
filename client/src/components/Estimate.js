@@ -20,36 +20,44 @@ function Estimate() {
     setEditMode(!editMode)
   }
 
-  // Function to handle changes in edited data
+  // Function to handle changes in input fields
   const handleInputChange = (e) => {
-    const { name, value, type } = e.target
+    const { name, value, type } = e.target;
 
     if (type === 'number') {
-      // Check if the value is a number
-      const numericValue = parseFloat(value)
-      if (!isNaN(numericValue)) {
-        // Ensure the value does not go below 0 or above 24
-        const clampedValue = Math.min(24, Math.max(0, numericValue))
-        setEditedData({ ...editedData, [name]: clampedValue.toString() })
+      if (name === 'monthlyBill') {
+        // Ensure monthlyBill is a whole number and non-negative
+        let numericValue = parseFloat(value);
+        if (!isNaN(numericValue)) {
+          numericValue = Math.max(0, Math.floor(numericValue));
+          setEditedData({ ...editedData, [name]: numericValue });
+        }
+      } else if (name === 'hours') {
+        // Ensure hours is between 0 and 24
+        let numericValue = parseFloat(value);
+        if (!isNaN(numericValue) && numericValue >= 0 && numericValue <= 24) {
+          setEditedData({ ...editedData, [name]: numericValue });
+        }
       }
     } else if (type === 'text') {
-      // Ensure text values have at most 5 characters
-      const trimmedValue = value.slice(0, 5)
-      setEditedData({ ...editedData, [name]: trimmedValue })
+      // Handle text inputs as you were doing
+      const trimmedValue = value.slice(0, 5);
+      setEditedData({ ...editedData, [name]: trimmedValue });
+    } else if (type === 'select-one') {
+      // Handle dropdown selects separately
+      setEditedData({ ...editedData, [name]: value });
     }
   }
 
-
   // Function to handle changes in the backup number input
   const handleBackupChange = (e) => {
-    let backupHours = parseInt(e.target.value, 10) || 0 // Ensure it's a valid number
+    let backupHours = parseInt(e.target.value, 10) || 0; // Ensure it's a valid number
 
     // Ensure the value does not go below 0 or above 24
-    backupHours = Math.min(24, Math.max(0, backupHours))
+    backupHours = Math.min(24, Math.max(0, backupHours));
 
-    setEditedData({ ...editedData, hours: backupHours })
+    setEditedData({ ...editedData, hours: backupHours });
   }
-
 
   // Function to handle appliance toggle cell
   const handleApplianceToggle = (index) => {
@@ -66,36 +74,36 @@ function Estimate() {
 
   // Function to save edited data
   const saveEditedData = () => {
-    // You can implement logic to save the edited data here, e.g., send it to an API
-    // For simplicity, we'll just update edit mode and reset the form data
     setEditMode(false)
   }
 
+  // Function to determine whether the user needs solar and storage or just storage
   function determineSystemType(solarStatus) {
     if (solarStatus === 'No') {
       return 'Solar & Storage'
     } else {
-      return 'Storage'
+      return 'Storage Only'
     }
   }
 
+  // Function to claculate how many batteris a user needs based on input parameters
   function calculateBatteriesNeeded(appliances) {
-    const ownYesCount = appliances.filter((appliance) => appliance.own === true).length
+    const ownUseDuringOutage = appliances.filter((appliance) => appliance.useDuringOutage === true).length
 
-    if (ownYesCount === 0) {
+    if (ownUseDuringOutage === 0) {
       return (
         <div>
-          <img className='estimate-img' src='' alt='1 battery' /><br />
+          <img className='estimate-img' src='https://res.cloudinary.com/domjidfzz/image/upload/v1697062067/TruPower/trupower_recomendation-1_mdsbno.png' alt='1 battery' /><br />
           <div className='estimate-subheading'><strong>Standard appliances to be backed up:</strong></div><br />
           <span className='estimate-description'>Refrigerator, Lights, Television, Internet Router, and Outlets</span>
         </div>
       )
-    } else if (ownYesCount === 1) {
+    } else if (ownUseDuringOutage === 1) {
       return (
         <div>
-          <img className='estimate-img' src='' alt='2 batteries' /><br />
+          <img className='estimate-img' src='https://res.cloudinary.com/domjidfzz/image/upload/v1697062056/TruPower/trupower-recomendation-2_haff8i.png' alt='2 batteries' /><br />
           <div className='estimate-subheading'><strong>Standard appliances to be backed up:</strong></div><br />
-          <span className='estimate-description'>Refrigerator, Lights, Television, Internet Router, and Outlets</span>
+          <span className= 'estimate-description'>Refrigerator, Lights, Television, Internet Router, and Outlets</span>
           <div className='estimate-subheading'><strong>Major Appliances to be backed up:</strong></div><br />
           <span className='estimate-description'>One major household appliance(ex. Air Conditioner, Pool Pump)</span>
         </div>
@@ -103,7 +111,7 @@ function Estimate() {
     } else {
       return (
         <div>
-          <img className='estimate-img' src='' alt='4 batteries' /><br />
+          <img className='estimate-img' src='https://res.cloudinary.com/domjidfzz/image/upload/v1697062044/TruPower/trupower-reccomendation-4_mhawoq.png' alt='4 batteries' /><br />
           <div className='estimate-subheading'><strong>Standard appliances to be backed up:</strong></div><br />
           <span className='estimate-description'>Refrigerator, Lights, Television, Internet Router, and Outlets</span><br />
           <div className='estimate-subheading'><strong>Extra Large Appliances to be backed up:</strong></div><br />
@@ -131,12 +139,11 @@ function Estimate() {
       height: '100%',
     })
 
-    // Generate the PDF from the HTML content with the ID 'report'
+    // Generate the PDF from the HTML content with the ID 'estimate-report'
     report.html(document.querySelector('#estimate-report')).then(() => {
       report.save('Your TruPower Summary.pdf') // Save the generated PDF with the specified filename
     })
   }
-
 
 
 
@@ -228,7 +235,7 @@ function Estimate() {
         ) : (
           <div>
             <div>
-              {editedData.zipCode}, {editedData.sliderValue}kWh/day, {determineSystemType(editedData.solarStatus)}, {editedData.hours} hrs backup
+              {editedData.zipCode}, {editedData.sliderValue}kWh / month, {determineSystemType(editedData.solarStatus)}, {editedData.hours} hrs backup
             </div>
             <div>{batteriesNeeded}</div>
             <button className='customer-form-submit-btn' onClick={toggleEditMode}>Edit Details</button>

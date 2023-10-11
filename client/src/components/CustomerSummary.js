@@ -1,11 +1,9 @@
 import React from 'react'
 import JsPDF from 'jspdf'
-import '../styles/CustomerSummary.css' // Import your CSS file for styling
 
 function CustomerSummary({ customerSummaryList, sums, checkPower }) {
 
-  const powerCheckResult = checkPower(sums) // Use the checkPower function to determine "TruPower" or "Not TruPower"
-
+  
   // Function to generate the PDF report
   const generatePDF = () => {
     // const report = new JsPDF('portrait', 'pt', 'a4')
@@ -15,13 +13,15 @@ function CustomerSummary({ customerSummaryList, sums, checkPower }) {
       format: 'a4',
       margins: { top: 10, bottom: 10, left: 10, right: 10 },
     })
-
+    
     // Generate the PDF from the HTML content with the ID 'report'
     report.html(document.querySelector('#report')).then(() => {
       report.save('Your TruPower Summary.pdf') // Save the generated PDF with the specified filename
     })
   }
-
+  
+  const powerCheckResult = checkPower(sums) // Use the checkPower function to determine "TruPower" or "Not TruPower"
+  
   function generateSummaryMessage() {
     const hasName = customerSummaryList.some((selectedRowData) => selectedRowData.name)
     if (!hasName) {

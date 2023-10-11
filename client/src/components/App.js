@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom"
 import Form from "./Form"
 import Estimate from "./Estimate"
 import '../styles/App.css'
-import '../styles/CustomerSummary.css'
 import '../styles/Estimate.css'
 import '../styles/Form.css'
 import '../styles/InputStyles.css'

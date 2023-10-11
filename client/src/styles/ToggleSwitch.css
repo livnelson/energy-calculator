@@ -30,3 +30,14 @@
 .large-toggle-switch.on .large-slider {
   transform: translateX(26px);
 }
+
+.large-toggle-cell {
+  justify-content: center;
+  margin: auto !important;
+}
+
+.centered-toggle-switch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

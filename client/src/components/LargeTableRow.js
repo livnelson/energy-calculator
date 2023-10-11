@@ -26,11 +26,13 @@ function LargeTableRow({
       </td>
       <td className='large-toggle-cell'>
         {/* Toggle Switch */}
+        <div className='centered-toggle-switch'>
         <div
           className={`large-toggle-switch ${row.addBackup ? 'on' : 'off'}`}
           onClick={() => handleBackupToggle(row.id)}
         >
           <div className="large-slider"></div>
+        </div>
         </div>
       </td>
       <td>

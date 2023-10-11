@@ -3,22 +3,22 @@ import LargeTableRow from './LargeTableRow' // Import the TableRow component
 import CustomerSummary from './CustomerSummary'
 import '../styles/LargeTable.css' // Import CSS for styling
 
-function LargeTable({ showAdditionalConfigurationOptions, setShowAdditionalConfigurationOptions, checkPower }) {
+function LargeTable({ showAdditionalConfigurationOptions, setShowAdditionalConfigurationOptions }) {
   const [customerSummaryList, setCustomerSummaryList] = useState([]) // State to store selected customer summary list
   const [quantityChanged, setQuantityChanged] = useState(false) // State to track if quantity has changed
   const [sums, setSums] = useState({ power: 1447.22, usage: 0, kWh: 63.03 }) // State to store calculated sums
 
   // Define initial data for table rows, with 'ownership' initially set to an empty string
   const initialData = [
-    { id: 2, name: 'Light Bulbs', power: 0.02, usage: 9, ownership: '✓', addBackup: false, quantity: 12, initialPower: 0.02 },
-    { id: 4, name: 'Fridge', power: 60, usage: 24, ownership: '✓', addBackup: false, quantity: 1, initialPower: 60 },
+    { id: 2, name: 'Light Bulbs', power: 0.02, usage: 9, ownership: '✓', addBackup: true, quantity: 12, initialPower: 0.02 },
+    { id: 4, name: 'Fridge', power: 60, usage: 24, ownership: '✓', addBackup: true, quantity: 1, initialPower: 60 },
     { id: 1, name: 'Microwave', power: 0.12, usage: .25, ownership: '', addBackup: false, quantity: 0, initialPower: 0.12 },
-    { id: 3, name: 'TV', power: 0.48, usage: 5, ownership: '✓', addBackup: false, quantity: 1, initialPower: 0.48 },
-    { id: 5, name: 'Router', power: 0.015, usage: 24, ownership: '✓', addBackup: false, quantity: 1, initialPower: 0.015 },
+    { id: 3, name: 'TV', power: 0.48, usage: 5, ownership: '✓', addBackup: true, quantity: 1, initialPower: 0.48 },
+    { id: 5, name: 'Router', power: 0.015, usage: 24, ownership: '✓', addBackup: true, quantity: 1, initialPower: 0.015 },
     { id: 6, name: 'Central AC', power: 10.55, usage: 2.5, ownership: '', addBackup: false, quantity: 0, initialPower: 10.55 },
     { id: 7, name: 'Heat Pump', power: 10.5, usage: 2, ownership: '', addBackup: false, quantity: 0, initialPower: 10.5 },
     { id: 8, name: 'Water Heater', power: 500, usage: 1, ownership: '', addBackup: false, quantity: 0, initialPower: 500 },
-    { id: 9, name: 'Oven', power: 2.3, usage: 1, ownership: '✓', addBackup: false, quantity: 1, initialPower: 2.3 },
+    { id: 9, name: 'Oven', power: 2.3, usage: 1, ownership: '✓', addBackup: true, quantity: 1, initialPower: 2.3 },
     { id: 10, name: 'Vacuum Cleaner', power: 0.75, usage: 0.5, ownership: '', addBackup: false, quantity: 0, initialPower: 0.75 },
     { id: 11, name: 'Hair Dryer', power: 1.5, usage: 0.25, ownership: '', addBackup: false, quantity: 0, initialPower: 1.5 },
     { id: 12, name: 'Pool', power: 1.12, usage: 2, ownership: '', addBackup: false, quantity: 0, initialPower: 1.12 },
@@ -44,11 +44,13 @@ function LargeTable({ showAdditionalConfigurationOptions, setShowAdditionalConfi
 
   // Function to calculate sums of power, usage, and kWh
   const calculateSums = () => {
-    const newSums = { power: 0, usage: 0, kWh: 0 }
+    const newSums = { power: 1447.22, usage: 0, kWh: 63.03 }
     data.forEach((row) => {
-      newSums.power += row.power * row.quantity
-      newSums.usage += row.power * row.quantity
-      newSums.kWh += row.power * row.usage
+      if (row.addBackup) {
+        newSums.power += row.power * row.quantity;
+        newSums.usage += row.power * row.quantity;
+        newSums.kWh += row.power * row.usage;
+      }
     })
     setSums(newSums)
   }
@@ -234,6 +236,54 @@ function LargeTable({ showAdditionalConfigurationOptions, setShowAdditionalConfi
     setShowAdditionalConfigurationOptions(!showAdditionalConfigurationOptions)
   }
 
+      // Function to calculate the total power usage
+      const checkPower = (sums) => {
+        if (sums.power <= 11499.99) {
+          return (
+            <>
+              <img
+                className='power-summary-image'
+                src='https://res.cloudinary.com/domjidfzz/image/upload/v1697062067/TruPower/trupower_recomendation-1_mdsbno.png'
+                alt='trupower-powerpack'
+                style={{ maxWidth: '400px' }}
+              />
+              <p>
+                1 TruPower PowerSwitch + 1 PowerPack
+              </p>
+            </>
+          )
+        } else if (sums.power >= 11500.00 && sums.power <= 14999.99) {
+          return (
+            <>
+              <img
+                className='power-summary-image'
+                src='https://res.cloudinary.com/domjidfzz/image/upload/v1697062056/TruPower/trupower-recomendation-2_haff8i.png'
+                alt='trupower-powerpack'
+                style={{ maxWidth: '500px' }}
+              />
+              <p>
+                1 TruPower PowerSwitch + 2 PowerPacks
+              </p>
+            </>
+          )
+        }
+        else if (sums.power >= 15000.00) {
+          return (
+            <>
+              <img
+                className='power-summary-image'
+                src='https://res.cloudinary.com/domjidfzz/image/upload/v1697062044/TruPower/trupower-reccomendation-4_mhawoq.png'
+                alt='trupower-powerpack'
+                style={{ maxWidth: '700px' }}
+              />
+              <p>
+                2 TruPower PowerSwitches + 4 PowerPacks
+              </p>
+            </>
+          )
+        }
+      }
+    
 
 
 
@@ -245,6 +295,7 @@ function LargeTable({ showAdditionalConfigurationOptions, setShowAdditionalConfi
         <button className='large-table-close-button' onClick={handleClose}>Close</button>
       </div>
       <div className='large-table-container'>
+          <h2>Select Appliances</h2>
         <table className='large-table'>
           <thead>
             <tr>
