@@ -1,0 +1,32 @@
+/* Large Toggle Switch */
+.large-toggle-switch {
+  background-color: #ccc;
+  border-radius: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 26px;
+  overflow: hidden;
+  padding-left: 2px;
+  position: relative;
+  transition: background-color 0.3s ease;
+  width: 50px;
+}
+
+/* Large Toggle Switch Slider */
+.large-toggle-switch .large-slider {
+  background-color: white;
+  border-radius: 50%;
+  height: 22px;
+  transform: translateX(0);
+  transition: transform 0.3s ease;
+  width: 22px;
+}
+
+.large-toggle-switch.on {
+  background-color: #0071bc;
+}
+
+.large-toggle-switch.on .large-slider {
+  transform: translateX(26px);
+}

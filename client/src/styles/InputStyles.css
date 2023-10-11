@@ -1,0 +1,25 @@
+/* Large Power Row Input and Usage Row Input */
+input.large-power-row-input[type="number"],
+.large-usage-row-input {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-right: 8px;
+  padding-bottom: 6px;
+  padding-top: 6px;
+  text-align: center;
+  width: 60px;
+}
+
+/* Always show the default arrows on input fields with class 'usage-row-input' for WebKit-based browsers (Chrome, Safari) */
+input.large-usage-row-input[type="number"]::-webkit-inner-spin-button,
+input.large-usage-row-input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
+}
+
+/* Remove the default arrows on input fields with class 'power-row-input' */
+input.large-power-row-input[type="number"]::-webkit-inner-spin-button,
+input.large-power-row-input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}

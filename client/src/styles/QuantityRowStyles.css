@@ -1,0 +1,64 @@
+/* Large Customer Summary */
+.large-customer-summary {
+  align-items: center;
+  background: #f1f3f4;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin-bottom: 80px;
+  margin-top: 30px;
+  padding: 40px 0px 40px 0px;
+  width: 70vw;
+}
+
+/* Large Download Button */
+.large-download-button {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+/* Large Power Check Result */
+.large-power-check-result {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Large Quantity Row */
+.large-quantity-row {
+  justify-content: space between;
+  margin: auto;
+  width: 100px;
+}
+
+/* Large Row Decrement and Row Increment Buttons */
+.large-row-decrement,
+.large-row-increment {
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  color: #5f5f5f;
+  cursor: pointer;
+  margin: 0 8px;
+}
+
+.large-row-decrement:hover,
+.large-row-increment:hover {
+  background-color: #0071bc;
+  border: 1px solid #0071bc;
+  color: #fff;
+}
+
+/* Large Summary Button */
+.large-summary-button {
+  background-color: #0071bc;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 14px;
+  margin-bottom: 30px;
+  margin-top: 10px;
+  padding: 10px 30px;
+}

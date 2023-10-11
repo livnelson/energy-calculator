@@ -1,0 +1,153 @@
+/* Container for the customer estimate */
+.customer-estimate {
+  background: #f1f3f4;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-width: 540px;
+  padding: 40px 20px 60px 50px;
+  width: 564px;
+}
+
+.estimate-img {
+min-width: 500px;
+min-height: 250px;
+background: #ccc;
+margin-top: 20px;
+}
+
+.estimate-subheading {
+  display: inline-block;
+  padding-top: 20px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+.estimate-description {
+  display: inline-block;
+  margin-top: 0px;
+  padding-top: 4px;
+  line-height: 1;
+}
+
+/* Input Select styles for customer edit mode */
+.customer-edit-select-input {
+  border: 1px solid #f1f3f4;
+  border-radius: 7px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  margin: 10px 0;
+  padding: 10px 20px;
+  width: 93%;
+}
+
+/* Style the select element */
+select.customer-edit-select-input {
+  border: 1px solid #f1f3f4;
+  border-radius: 7px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  margin: 10px 0;
+  padding: 10px 20px;
+  width: 93%;
+}
+
+/* Style the dropdown options */
+select.customer-edit-select-input option {
+  background-color: #fff; /* Background color of the option */
+  color: #333; /* Text color of the option */
+  cursor: pointer;
+  padding: 5px 10px; /* Padding for each option */
+}
+
+/* Style the selected option */
+select.customer-edit-select-input option:checked {
+  background-color: #0071bc; /* Background color of the selected option */
+  color: #fff; /* Text color of the selected option */
+  cursor: pointer;
+}
+
+/* Input styles for customer edit mode */
+.customer-edit-input {
+  border: 1px solid #f1f3f4;
+  border-radius: 7px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  margin: 10px 0;
+  padding: 10px 20px;
+  width: 85%;
+}
+
+/* Container for appliance table in edit mode */
+.appliance-table-edit-container {
+  background-color: #fff;
+  border-radius: 7px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  overflow-x: auto;
+  padding-left: 20px;
+  width: 92%;
+}
+
+/* Styles for the appliance table in edit mode */
+.appliance-table-edit {
+  border-collapse: collapse;
+  cursor: pointer;
+  margin-bottom: 20px; /* Add any desired margin */
+  width: 100%;
+}
+
+/* Styles for table headers and cells in edit mode */
+.appliance-table-edit th,
+.appliance-table-edit td {
+  cursor: pointer;
+  padding: 8px 12px;
+  text-align: left;
+  /* border-bottom: 1px solid #ccc; */
+}
+
+/* Styles for table headers in edit mode */
+.appliance-table-edit th {
+  align-items: center;
+  background-color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  padding-top: 30px;
+  text-align: left;
+}
+
+/* Center the contents of columns 2 and 3 */
+.appliance-table-edit td:nth-child(2),
+.appliance-table-edit td:nth-child(3) {
+  align-items: center;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* Center the headings of columns 2 and 3 */
+.appliance-table-edit th:nth-child(2),
+.appliance-table-edit th:nth-child(3) {
+  align-items: center;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* Styles for the submit button */
+.btn {
+  background: #0071bc;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  cursor: pointer;
+  margin: 30px 10px 30px 0;
+  padding: 10px 10px;
+  width: 200px;
+}
+
+/* Styles for the submit button on hover */
+.btn:hover {
+  background: #004f8c;
+  cursor: pointer;
+}

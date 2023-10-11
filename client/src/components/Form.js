@@ -1,26 +1,76 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import '../styles/Form.css'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../styles/Form.css';
 
 function Form() {
-  const [sliderValue, setSliderValue] = useState(35)
-  const [hours, setHours] = useState(16)
+  const [zipCode, setZipCode] = useState('');
+  const [monthlyBill, setMonthlyBill] = useState('');
+  const [sliderValue, setSliderValue] = useState(35);
+  const [solarStatus, setSolarStatus] = useState(''); 
+  const [hours, setHours] = useState(16);
   const [appliances, setAppliances] = useState([
     { name: 'Air Conditioner', own: false, useDuringOutage: false },
     { name: 'Pool Pump', own: false, useDuringOutage: false },
     { name: 'Electric Vehicle', own: false, useDuringOutage: false },
-  ])
+  ]);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+    // Function to calculate the total power usage
+  const checkPower = (sums) => {
+    if (sums.power <= 11499.99) {
+      return (
+        <>
+          <img
+            className='power-summary-image'
+            src='https://res.cloudinary.com/domjidfzz/image/upload/v1696630025/TruPower/TruPower-PowerPack-Side_hqwple.png'
+            alt='trupower-powerpack'
+            style={{ width: '200px' }}
+          />
+          <p>
+            1 TruPower PowerSwitch + 1 PowerPack
+          </p>
+        </>
+      )
+    } else if (sums.power >= 11500.00 && sums.power <= 14999.99) {
+      return (
+        <>
+          <img
+            className='power-summary-image'
+            src=''
+            alt='trupower-powerpack'
+          />
+          <p>
+            1 TruPower PowerSwitch + 2 PowerPacks
+          </p>
+        </>
+      )
+    }
+    else if (sums.power >= 15000.00) {
+      return (
+        <>
+          <img
+            className='power-summary-image'
+            src=''
+            alt='trupower-powerpack'
+          />
+          <p>
+            2 TruPower PowerSwitches + 4 PowerPacks
+          </p>
+        </>
+      )
+    }
+  }
+
 
   const handleSliderChange = (e) => {
-    const newValue = e.target.value
-    setSliderValue(newValue)
+    const newValue = e.target.value;
+    setSliderValue(newValue);
   }
 
   const handleIncrement = (e) => {
     e.stopPropagation()
-    setHours(hours + 1)
+    setHours((prevHours) => Math.min(prevHours + 1, 24));
   }
 
   const handleDecrement = (e) => {
@@ -30,54 +80,83 @@ function Form() {
     }
   }
 
-  const handleShowEstimate = (e) => {
-    e.preventDefault()
-    navigate('/estimate')
-  }
-
   const handleApplianceOwnershipChange = (index) => {
-    const updatedAppliances = [...appliances]
-    updatedAppliances[index].own = !updatedAppliances[index].own
-    setAppliances(updatedAppliances)
+    const updatedAppliances = [...appliances];
+    updatedAppliances[index].own = !updatedAppliances[index].own;
+    setAppliances(updatedAppliances);
   }
 
   const handleUseDuringOutageChange = (index) => {
-    const updatedAppliances = [...appliances]
-    updatedAppliances[index].useDuringOutage = !updatedAppliances[index].useDuringOutage
-    setAppliances(updatedAppliances)
+    const updatedAppliances = [...appliances];
+    updatedAppliances[index].useDuringOutage = !updatedAppliances[index].useDuringOutage;
+  
+    // Synchronize appliance ownership with the use during outage status
+    if (updatedAppliances[index].useDuringOutage) {
+      updatedAppliances[index].own = true;
+    }
+  
+    setAppliances(updatedAppliances);
+  };
+
+  const handleSolarStatusChange = (e) => {
+    // Update the selected radio button value
+    setSolarStatus(e.target.value);
+  }
+
+  const handleShowEstimate = (e) => {
+    e.preventDefault();
+    
+    // Capture values from form inputs
+    const formData = {
+      zipCode, 
+      monthlyBill, 
+      sliderValue,
+      solarStatus,
+      hours,
+      appliances,
+    };
+    
+    // Redirect to the 'estimate' route and pass formData as state
+    navigate('/estimate', { state: formData });
+
   }
 
   return (
     <div className='customer-form'>
-      <form onSubmit={handleShowEstimate}>
-        <h3>Enter Your Energy Requirements</h3>
-        <div>
-          {/* Label for zip code input */}
-          <input
-            className='customer-form-input'
-            type='text'
-            id='zipCode'
-            name='zipCode'
-            placeholder='Enter your Zip Code / Address'
-            required
-          />
-        </div>
+    <form onSubmit={handleShowEstimate}>
+      <h3>Enter Your Energy Requirements</h3>
+      <div>
+        {/* Label for zip code input */}
+        <input
+          className='customer-form-input'
+          type='text'
+          id='zipCode'
+          name='zipCode'
+          placeholder='Enter your Zip Code / Address'
+          required
+          value={zipCode} // Add value attribute
+          onChange={(e) => setZipCode(e.target.value)} // Update the value when input changes
+        />
+      </div>
 
-        <div className='customer-form-bill-input'>
-          <label className='customer-form-label'>My Electricity Bill</label>
-          <div className='customer-form-custom-input'>
-            <span className='customer-form-input-text'>$</span>
-            {/* Label for monthly bill input */}
-            <input
-              className='customer-form-small-input'
-              type='text'
-              id='monthlyBill'
-              name='monthlyBill'
-              placeholder='150'
-            />
-            <span className='customer-form-input-text'>per month</span>
-          </div>
+      <div className='customer-form-bill-input'>
+        <label className='customer-form-label'>My Electricity Bill</label>
+        <div className='customer-form-custom-input'>
+          <span className='customer-form-input-text'>$</span>
+          {/* Label for monthly bill input */}
+          <input
+            className='customer-form-small-input'
+            type='text'
+            id='monthlyBill'
+            name='monthlyBill'
+            placeholder='150'
+            required
+            value={monthlyBill} // Add value attribute
+            onChange={(e) => setMonthlyBill(e.target.value)} // Update the value when input changes
+          />
+          <span className='customer-form-input-text'>per month</span>
         </div>
+      </div>
 
         <div className='customer-form-slider'>
           {/* Label for estimated energy consumption input */}
@@ -106,16 +185,20 @@ function Form() {
               className='customer-form-radio'
               type='radio'
               id='radioYes'
-              name='radioGroup'
+              name='solarStatus'
               value='Yes'
+              checked={solarStatus === 'Yes'} // Check if 'Yes' is selected
+              onChange={handleSolarStatusChange} // Update the value on change
             />
             <label htmlFor='radioYes'>Yes</label>
             <input
               className='customer-form-radio'
               type='radio'
               id='radioNo'
-              name='radioGroup'
+              name='solarStatus'
               value='No'
+              checked={solarStatus === 'No'} // Check if 'No' is selected
+              onChange={handleSolarStatusChange} // Update the value on change
             />
             <label htmlFor='radioNo'>No</label>
           </div>
@@ -141,6 +224,7 @@ function Form() {
           >
             +
           </button>
+          <span className='outage-suffix'>per day</span>
         </div>
 
           <div className='appliance-table-container'>
@@ -158,7 +242,8 @@ function Form() {
                     <td>{appliance.name}</td>
                     <td>
                       <input
-                        type='radio'
+                        className='appliance-own'
+                        type='checkbox'
                         name={`own-${index}`}
                         checked={appliance.own}
                         onChange={() => handleApplianceOwnershipChange(index)}

@@ -1,0 +1,42 @@
+/* Large Summary Details */
+.summary-details {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 5px 5px 0 0;
+  margin: auto;
+  width: 70vw;
+  /* max-width: 520px; */
+  text-align: center;
+}
+
+/* Large Summary Heading */
+.summary-heading {
+  line-height: 1;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+/* Large Summary Detail Data */
+.summary-detail-data {
+  line-height: 1;
+  margin-bottom: 4px;
+  margin-top: 4px;
+  text-align: center;
+}
+
+/* Large Tip Message */
+.large-tip-message {
+  font-size: 11px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Large PDF Container */
+.large-pdf-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  width: 100%;
+}
